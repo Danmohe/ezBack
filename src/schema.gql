@@ -1,0 +1,141 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Box {
+  id: Int!
+  box: Int!
+}
+
+type Branch {
+  id: Int!
+  box_count: Int!
+  address: String!
+}
+
+type BranchResponse {
+  success: Boolean!
+  message: String!
+}
+
+type Patient {
+  id: Int!
+  access_token: String
+  recovery_code: Float
+  rut: String!
+  password: String!
+  birthdate: String!
+  first_name: String!
+  middle_name: String
+  surname: String!
+  second_surname: String
+  sex: String!
+  address: String!
+  region: String!
+  commune: String!
+  email: String!
+  phone: String!
+}
+
+type Personnel {
+  id: Int!
+  access_token: String
+  recovery_code: Float
+  rut: String!
+  password: String!
+  first_name: String!
+  middle_name: String
+  surname: String!
+  second_surname: String
+  email: String!
+  role: String!
+  speciality: String!
+}
+
+type UserResponse {
+  success: Boolean!
+  message: String!
+}
+
+type Query {
+  getPatientByRut(rut: String!): Patient!
+  getPatient(id: Int!): Patient!
+  getAllPatients: [Patient!]!
+  getPersonnelByRut(rut: String!): Personnel!
+  getPersonnel(id: Int!): Personnel!
+  getAllPersonnel: [Personnel!]!
+  getBranch(id: Int!): Branch!
+  getBranches: [Branch!]!
+  getBox(id: Int!): Box!
+  getBoxesByBranch(id_branch: Int!): [Box!]!
+}
+
+type Mutation {
+  createPatient(input: CreatePatientInput!): UserResponse!
+  createPersonnel(input: CreatePersonnelInput!): UserResponse!
+  createBranch(input: CreateBranchInput!): BranchResponse!
+  createBox(input: CreateBoxInput!): BranchResponse!
+  loginPatient(input: LoginInput!): Patient!
+  loginPersonnel(input: LoginInput!): Personnel!
+  recoveryPatient(input: RecoveryUserInput!): Boolean!
+  recoveryPersonnel(input: RecoveryUserInput!): Boolean!
+  validateRecovery(input: ValidateRecoveryUserInput!): UserResponse!
+  changePasswordPatient(input: ChangePasswordInput!): UserResponse!
+  changePasswordPersonnel(input: ChangePasswordInput!): UserResponse!
+}
+
+input CreatePatientInput {
+  rut: String!
+  password: String!
+  birthdate: String!
+  first_name: String!
+  middle_name: String
+  surname: String!
+  second_surname: String
+  sex: String!
+  address: String!
+  region: String!
+  commune: String!
+  email: String!
+  phone: String!
+}
+
+input CreatePersonnelInput {
+  rut: String!
+  password: String!
+  first_name: String!
+  middle_name: String
+  surname: String!
+  second_surname: String
+  email: String!
+  role: String!
+  speciality: String!
+  id_branch: Float!
+}
+
+input CreateBranchInput {
+  address: String!
+}
+
+input CreateBoxInput {
+  id_branch: Float!
+  box: Float!
+}
+
+input LoginInput {
+  rut: String!
+  password: String!
+}
+
+input RecoveryUserInput {
+  rut: String!
+}
+
+input ValidateRecoveryUserInput {
+  recoveryPass: Int!
+}
+
+input ChangePasswordInput {
+  rut: String!
+  newPassword: String!
+}
